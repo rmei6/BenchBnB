@@ -12,7 +12,8 @@ class SessionForm extends React.Component {
     handleSubmit(e){
         e.preventDefault();
         const user = Object.assign({}, this.state);
-        this.props.processForm(user);
+        this.props.processForm(user)
+            .then(() => this.props.history.push('/'));
     }
     update(field){
         return e => {
@@ -21,19 +22,22 @@ class SessionForm extends React.Component {
     }
 
     render(){
+        const errors = this.props.errors ? (
+            <ul>
+                {this.props.errors.map((error, i) => (
+                    <li key={`error-${i}`}>
+                        {error}
+                    </li>
+                ))}
+            </ul>
+        ) : (null)
         return (
             <div className='login-form-container'>
                 <form onSubmit={this.handleSubmit} className='login-form-box'>
                     Welcome to BenchBnB!
                     <br />
                     Please {this.props.formType} or {this.props.navLink}
-                    <ul>
-                        {this.props.errors.map((error,i) => (
-                            <li key={`error-${i}`}>
-                                {error}
-                            </li>
-                        ))}
-                    </ul>
+                    {errors}
                     <div className="login-form">
                         <br />
                         <label>Username

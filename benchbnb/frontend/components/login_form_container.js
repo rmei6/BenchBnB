@@ -10,7 +10,7 @@ const mapStateToProps = (state,ownProps) => ({
     navLink: <Link to='/signup'>Sign up</Link>
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
     processForm: (user) => dispatch(login(user))
 });
 

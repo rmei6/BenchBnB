@@ -1,1 +1,1 @@
-json.username obj.username
+json.extract! obj, :id, :username
